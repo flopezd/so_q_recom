@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  converter:
+    build:
+      context: .
+    volumes:
+      - ./csv:/usr/src/converter/csv
+      - ./xml:/usr/src/converter/xml
