@@ -2,3 +2,4 @@ load_data/csv_convertion/xml/
 load_data/csv_convertion/csv/
 creds
 pg_data/
+csv/
