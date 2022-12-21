@@ -1,12 +1,10 @@
-import pandas as pd
+import dask.dataframe as dd
 import os
 
 csv_path = os.environ['CSV_PATH']
-chunk_size = int(os.environ['CHUNK_SIZE'])
+npartitions = int(os.environ['N_PARTITIONS'])
 root_path, csv_ext = os.path.splitext(csv_path)
 
-with pd.read_csv(csv_path, chunksize=chunk_size) as reader:
-    i=0
-    for chunk in reader:
-        chunk.to_csv(root_path + f"_{i}" + csv_ext, index=False)
-        i+=1
+df = dd.read_csv(csv_path, assume_missing=True)
+df = df.repartition(npartitions=npartitions)
+df.to_csv(f"{root_path}_*{csv_ext}", index=False)

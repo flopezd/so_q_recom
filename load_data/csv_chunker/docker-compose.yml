@@ -8,4 +8,4 @@ services:
       - ./csv:/usr/src/chunker/csv
     environment:
       - CSV_PATH=csv/Posts.csv
-      - CHUNK_SIZE=200000000
+      - N_PARTITIONS=10
