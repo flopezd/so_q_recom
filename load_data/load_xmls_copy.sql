@@ -1,5 +1,14 @@
 COPY users FROM '/var/lib/postgresql/data/csv/Users.csv' DELIMITER ',' CSV HEADER;
-COPY posts FROM '/var/lib/postgresql/data/csv/Posts.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts00.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts01.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts02.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts03.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts04.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts05.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts06.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts07.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts08.csv' DELIMITER ',' CSV HEADER;
+COPY posts FROM '/var/lib/postgresql/data/csv/Posts09.csv' DELIMITER ',' CSV HEADER;
 COPY votes FROM '/var/lib/postgresql/data/csv/Votes.csv' DELIMITER ',' CSV HEADER;
 COPY post_links FROM '/var/lib/postgresql/data/csv/PostLinks.csv' DELIMITER ',' CSV HEADER;
 COPY badges FROM '/var/lib/postgresql/data/csv/Badges.csv' DELIMITER ',' CSV HEADER;
