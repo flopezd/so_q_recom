@@ -1,3 +1,5 @@
+# Data download and transfomation
+
 To create and insert the data in the database:
 
 Download the data:
@@ -25,6 +27,8 @@ docker compose up
 
 Move the `Posts.xml` file to the `csv_convertion/xml` directory, drop the previous files. Run `posts_spliter.sh` to split the posts in 10 parts. Run `posts_conversion.sh` to convert all the parts from xml to csv.
 
+# Store in database
+
 Create pg_data directory in the root of the project to store the database files. Run the docker compose with the current user:
 
 ```bash
@@ -49,4 +53,19 @@ Create the new table with the posts since 2019:
 
 ```bash
 UID=$(id -u) GID=$(id -g) docker compose exec postgres psql -h localhost -p 5432 -U postgres -d stack_overflow -c "CREATE TABLE posts_19 AS SELECT * FROM posts WHERE last_activity_date >= date '2019-01-01';"
+```
+
+# Database backups
+
+To create a backup run:
+
+```bash
+UID=$(id -u) GID=$(id -g) docker compose exec -d postgres bash -c 'pg_dump -U postgres -Fc stack_overflow > /var/lib/postgresql/data/stack_overflow.dump'
+```
+
+To restore a backup run:
+
+```bash
+UID=$(id -u) GID=$(id -g) docker compose exec -d postgres psql -U postgres -c 'CREATE DATABASE test_so;'
+UID=$(id -u) GID=$(id -g) docker compose exec -d postgres pg_restore -U postgres -d test_so /var/lib/postgresql/data/stack_overflow.dump
 ```
