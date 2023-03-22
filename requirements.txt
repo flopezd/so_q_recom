@@ -1,5 +1,7 @@
-ipykernel==6.17.*
+ipykernel==6.21.*
 psycopg2-binary==2.9.*
 pandas==1.5.*
-matplotlib==3.5.*
-dask==2022.12.*
+matplotlib==3.7.*
+seaborn==0.12.*
+statsmodels==0.13.*
+beautifulsoup4==4.12.*
