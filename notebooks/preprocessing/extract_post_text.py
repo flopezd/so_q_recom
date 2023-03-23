@@ -9,7 +9,7 @@ BATCH_SIZE = 500000
 
 def extract_text(id_body):
     post_id, body = id_body
-    return post_id, BeautifulSoup(body, 'html.parser').get_text()
+    return post_id, BeautifulSoup(body, 'html.parser').get_text().encode("utf-8", 'backslashreplace').decode()
 
 
 connection = psycopg2.connect(user="postgres", password="postgres", host="127.0.0.1", port="54320", database="stack_overflow")
