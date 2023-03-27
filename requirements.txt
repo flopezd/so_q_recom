@@ -6,5 +6,5 @@ seaborn==0.12.*
 statsmodels==0.13.*
 beautifulsoup4==4.12.*
 gensim==4.3.*
-faiss-cpu=1.7.*
-adjustText=0.8.*
+faiss-cpu==1.7.*
+adjustText==0.8.*
