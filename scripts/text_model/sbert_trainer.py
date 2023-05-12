@@ -69,7 +69,7 @@ class DBDatasets:
                 return posts
 
 class SBERTTrainer:
-    def __init__(self, posts, base_model='distilbert-base-cased'):
+    def __init__(self, posts, batch_size=2, base_model='distilbert-base-cased'):
         train_examples = [] 
         for q_text, q_title, sq_text, sq_title in posts:
             post_text = q_text
@@ -79,7 +79,7 @@ class SBERTTrainer:
             if sq_title is not None:
                 sim_post_text = sq_title + "\n\n" + sq_text
             train_examples.append(InputExample(texts=[post_text, sim_post_text]))
-        self.train_dataloader = NoDuplicatesDataLoader(train_examples, batch_size=2)
+        self.train_dataloader = NoDuplicatesDataLoader(train_examples, batch_size=batch_size)
         bert = models.Transformer(base_model)
         pooler = models.Pooling(
             bert.get_word_embedding_dimension(),
@@ -127,17 +127,18 @@ if __name__ == "__main__":
     parser.add_argument('until_year')
     parser.add_argument('file_names')
     parser.add_argument('similar_limit')
-    parser.add_argument('docs_limit', nargs='?')
-    parser.add_argument('num_epochs', nargs='?', default=1, type=int)
+    parser.add_argument('--batch_size', nargs='?', type=int)
+    parser.add_argument('--docs_limit', nargs='?')
+    parser.add_argument('--num_epochs', nargs='?', default=1, type=int)
     args = parser.parse_args()
 
     logger.info(f"""Arguments: port:{args.port}, tag:{args.tag}, until_year:{args.until_year},
-                    num_epochs:{args.num_epochs}, similar_limit:{args.similar_limit},
+                    num_epochs:{args.num_epochs}, similar_limit:{args.similar_limit}, batch_size:{args.batch_size},
                     docs_limit:{args.docs_limit}, file_names:{args.file_names}""")
     
     db_ds = DBDatasets(args.port)
     sbert_trainer = SBERTTrainer(db_ds.get_similar_docs_sample(args.tag, args.until_year,
-                                               args.similar_limit))
+                                               args.similar_limit), args.batch_size)
     sbert_trainer.run(args.num_epochs, args.file_names)
     
     FaissIndexTrainer(db_ds.get_docs_sample(args.tag, args.until_year,
