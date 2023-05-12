@@ -69,7 +69,7 @@ class DBDatasets:
                 return posts
 
 class SBERTTrainer:
-    def __init__(self, posts, batch_size=2, base_model='nli-distilroberta-base-v2'):
+    def __init__(self, posts, batch_size=2, base_model='sentence-transformers/nli-distilroberta-base-v2'):
         train_examples = [] 
         for q_text, q_title, sq_text, sq_title in posts:
             post_text = q_text
