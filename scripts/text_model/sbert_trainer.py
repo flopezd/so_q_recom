@@ -92,8 +92,11 @@ class SBERTTrainer:
         train_loss = losses.MultipleNegativesRankingLoss(model=self.model)
         warmup_steps = int(len(self.train_dataloader) * num_epochs * WARMUP_PERC)
 
+        start_time = time.time()
         self.model.fit(train_objectives=[(self.train_dataloader, train_loss)], epochs=num_epochs, warmup_steps=warmup_steps,
                                     output_path=SBERT_PREPOSITION+model_path, show_progress_bar=False)
+        logger.info(f"Finetune time: {time.time() - start_time}")
+
 
 class FaissIndexTrainer:
     def __init__(self, all_posts):
