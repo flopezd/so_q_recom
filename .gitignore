@@ -15,4 +15,5 @@ mlruns/*
 **/*.csv
 **/*.png
 **/*.pickle
+**/*.pkl
 **/*.xlsx
