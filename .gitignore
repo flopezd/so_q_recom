@@ -2,3 +2,17 @@ load_data/csv_convertion/xml/
 load_data/csv_convertion/csv/
 pg_data/
 csv/
+**/.ipynb_checkpoints/*
+**/*.out
+**/*.log
+.python-version
+load_data/csv_chunker/*
+mlartifacts/*
+mlruns/*
+**/*.doc
+**/*.npy
+**/*.index
+**/*.csv
+**/*.png
+**/*.pickle
+**/*.xlsx
