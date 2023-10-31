@@ -10,7 +10,7 @@ Create a new virtual environment and set it as the default interpreter for the p
 
 ```bash
 pyenv install 3.10
-pyenv pyenv virtualenv 3.10 so_q_recom
+pyenv virtualenv 3.10 so_q_recom
 pyenv local so_q_recom
 ```
 
