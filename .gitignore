@@ -17,6 +17,7 @@ mlruns/*
 **/*.pickle
 **/*.pkl
 **/*.xlsx
+**/*.pdf
 **/xgboost_ranker
 **/SBERT_python_*/*
 **/question_transformer_model/*
